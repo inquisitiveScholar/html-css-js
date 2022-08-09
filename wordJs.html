@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>wodpad Js</title>
+	<style type="text/css">
+
+		.title
+		{
+			color: black;
+			font-weight: bold;
+		}
+
+		.control-btn
+		{
+			
+			background-color: #D8D8D8;
+			outline: none !important;
+			border: none !important;
+			float: right !important;
+			font-size: 18px !important;
+			
+		}
+
+		.control-btn:hover
+		{
+			font-size: 22px;
+			font-weight: bold;
+			
+		}
+		
+		
+		.toolbar-box
+		{
+			
+			margin-top: 13px;
+			margin-left: 13px;
+			margin-right: 0px;
+			background-color: #F8F8F8;
+			border-radius: 5px;
+		}
+		.menu-box
+		{
+			
+			height: 60px;
+			
+		}
+		.bottom-border
+		{
+			border-bottom: 1px solid  #DCDCDC;
+		}
+		.main-container{
+			
+		}
+
+		.title-container
+		{
+			background-color: #D8D8D8;
+		}
+
+		.toolbar-container
+		{
+			width: 100%;
+		}
+
+		.content-container
+		{
+			
+		}
+
+		.status-container
+		{
+			
+		}
+
+		.footer-container
+		{
+			background-color: #D8D8D8;
+		}
+		.box-container
+		{
+			
+
+
+		}
+		.col-border
+		{
+			border:1px solid black;
+		}
+
+
+	</style>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<script type="text/javascript">
+
+		var apply_list="";// list of action that perform on event apply changes
+		//function for pushing value on event list
+		function list_add(value)
+		{
+			apply_list=apply_list+value+";";
+		}
+		function pflow()
+		{
+			return flow=document.getElementById("m-flow").checked?document.getElementById("m-flow").value:document.getElementById("i-flow").value;
+		}
+		//control-box code is here
+		function closefun() {
+			container=document.getElementById("full-outer-box");
+			container.style.display="none";
+		}
+
+		function maxfun()
+		{
+			container=document.getElementById("m-box-container");
+			if(container.style.display=="none" )
+			{
+				container.style.display="block";
+			}
+			
+		}
+		function minfun()
+		{
+			container=document.getElementById("m-box-container");
+			container.style.display="none";
+		}
+		//tool box code is here 
+
+		function textBold()
+		{	
+			status=pflow();// to get status of which event is fire right now!
+			container=document.getElementById("text-box");
+			if (container.style.fontWeight!="bold")
+			{
+				if (status=="I")
+				{
+					container.style.fontWeight="bold";
+				}
+				else
+				{
+					list_add("font-weight:bold");
+				}
+				
+			}
+			else
+			{
+				
+				if (status=="I")
+				{
+					container.style.fontWeight="normal";
+				}
+				else
+				{	//please use css style 
+					list_add("font-weight:normal");
+				}
+			}
+			
+		}
+
+		function textItalic()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			if(container.style.fontStyle!="italic")
+			{
+				if(status=="I")
+				{
+					container.style.fontStyle="italic";
+				}
+				else
+				{
+					list_add("font-style:italic");
+				}
+			}
+
+			else
+			{
+				if (status=="I")
+				{
+					container.style.fontStyle="normal";
+				}
+				else
+				{
+					list_add("font-style:normal");
+				}
+			}
+		}
+
+		function textUnderLine()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			if(container.style.textDecoration !="underline")
+			{
+				if(status=="I")
+				{
+					container.style.textDecoration="underline";
+				}
+
+				else
+				{
+					list_add("text-decoration:underline");
+				}
+			}
+			else
+			{
+				if(status=="I")
+				{
+					container.style.textDecoration="none";
+
+				}
+
+				else
+				{
+					list_add("text-decoration:none");
+				}
+			}
+		}
+
+		function textLeft()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+
+			if(container.style.textAlign!="left")
+			{
+				if(status=="I")
+				{
+					container.style.textAlign="left";
+				}
+				else
+				{
+					list_add("text-Align:left");
+				}
+			}
+
+		}
+
+		function textRight()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+
+			if (container.style.textAlign!="right")
+			{
+				if(status=="I")
+				{
+					container.style.textAlign="right";
+				}
+
+				else
+				{
+					list_add("text-Align:right");
+				}
+			}
+			
+		}
+
+		function textCenter()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			if (container.style.textAlign !="center")
+			{
+				if(status=="I")
+				{
+					container.style.textAlign="center";
+				}
+				else
+				{
+					list_add("text-Align:center");
+				}
+			}
+		}
+
+		function colorBlue()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			val=prompt("Enter Value \n * 0 for font-color \n * 1 for background-color");
+			if (val==0)
+			{
+				if (container.style.color!="blue")
+				{
+					if(status=="I")
+					{
+						container.style.color="blue";
+					}
+					else
+					{
+						list_add("color:blue");
+					}
+				}
+			}
+
+			else if(val==1)
+			{
+				if (container.style.backgroundColor!="blue")
+				{
+					if(status=="I")
+					{
+						container.style.backgroundColor="blue";
+					}
+					else
+					{
+						list_add("background-Color:blue");
+					}
+				}
+
+			}
+
+			else
+			{
+				alert("Please Enter Valid Value");
+			}
+		}
+
+		// second color is here 
+		function colorBlack()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			val=prompt("Enter Value \n * 0 for font-color \n * 1 for background-color");
+			if (val==0)
+			{
+				if (container.style.color!="black")
+				{
+					if(status=="I")
+					{
+						container.style.color="black";
+					}
+					else
+					{
+						list_add("color:black");
+					}
+				}
+			}
+
+			else if(val==1)
+			{
+				if (container.style.backgroundColor!="black")
+				{
+					if(status=="I")
+					{
+						container.style.backgroundColor="black";
+					}
+					else
+					{
+						list_add("backgroundColor:black");
+					}
+				}
+
+			}
+
+			else
+			{
+				alert("Please Enter Valid Value");
+			}
+		}
+
+		// third color
+		function colorRed()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			val=prompt("Enter Value \n * 0 for font-color \n * 1 for background-color");
+			if (val==0)
+			{
+				if (container.style.color!="red")
+				{
+					if(status=="I")
+					{
+						container.style.color="red";
+					}
+					else
+					{
+						list_add("color:red");
+					}
+				}
+			}
+
+			else if(val==1)
+			{
+				if (container.style.backgroundColor!="red")
+				{
+					if(status=="I")
+					{
+						container.style.backgroundColor="red";
+					}
+					else
+					{
+						list_add("background-Color:red");
+					}
+				}
+
+			}
+
+			else
+			{
+				alert("Please Enter Valid Value");
+			}
+		}
+
+		// font- styling function
+		function getFontStyle1()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			
+			if (container.style.fontFamily!="Arial Black")
+			{
+				if (status=="I")
+				{	
+					container.style.fontFamily="Arial Black";
+					//alert(container.style.fontFamily);
+				}
+				else
+				{
+					list_add("font-Family:Arial Black");
+				}
+			}
+
+			
+
+			
+
+		}
+
+		function getFontStyle2()
+		{
+			status=pflow();
+			container=document.getElementById("text-box");
+			
+			 if (container.style.fontFamily!="Comic Sans MS")
+			{
+				if (status=="I")
+				{	
+					container.style.fontFamily="Comic Sans MS";
+				}
+				else
+				{
+					list_add("font-Family:Comic Sans MS");
+				}
+			}
+		}
+
+	function textSize()
+	{
+		status=pflow();
+		size=prompt("ENTER FONT SIZE \n *15px");
+		container=document.getElementById("text-box");
+
+		if (status=="I")
+		{
+			container.style.fontSize=size;
+		}
+		else
+		{
+			list_add("font-Size:"+size+"");
+		}
+	}
+
+	//fetching all action 
+	function getAllAction()
+	{	container=document.getElementById("text-box");
+
+			container.setAttribute("style",apply_list);
+	}
+
+	</script>
+
+</head>
+<body>
+<div id="full-outer-box" class="container">
+<div class="row main-container my-5 "> <!-- main container--->
+	<div class="col-md-12 shadow-lg">
+		
+		<div class="row title-container"> <!-- title bar -->
+			<div class="col-md-10 bottom-border col-9 col-sm-10" >
+				<h6 style="text-align: left;"><span style="color: red;">J</span>avaScriptWord <span style="color: red;">!</span></h6>
+			</div>
+			<div class="col-md-2 bottom-border col-sm-12 col-3 ">
+				<button class="control-btn" id="btn-close" onclick="closefun()">x</button>
+				<button class="control-btn" id="btn-max" onclick="maxfun()">+</button>
+				<button class="control-btn" id="btn-min" onclick="minfun()">-</button>
+				
+				
+
+			</div>
+		</div>
+
+		<div id="m-box-container" class="row box-container" > <!-- box container-->
+			<div class="col-md-12" >
+
+				<div class="row toolbar-container">	<!--toolbar--->
+					<div class="col-md-12 toolbar-box shadow-sm">
+						<div class="row" >
+							<div class="col-md-8 sm-12 col-12 menu-box" style="border-right:1px solid #DCDCDC;">
+							
+									<div >
+										<small>Text Decoration Tool</small>
+									</div>
+									<div>
+										<button id="btn-bold" onclick="textBold()"><b>B</b></button>
+										<button id="btn-italic" onclick="textItalic()"><i>I</i></button>
+										<button id="btn-underling" onclick="textUnderLine()"><u>U</u></button>
+										<button id="btn-left" onclick="textLeft()">A--</button>
+										<button id="btn-right" onclick="textRight()">--A</button>
+										<button id="btn-center" onclick="textCenter()">-A-</button>
+										<button id="btn-color-blue" onclick="colorBlue()" style="background-color: blue;border:none;margin-left: 1px;">  </button>
+										<button id="btn-color-black" onclick="colorBlack()" style="background-color: black;border:none;margin-left: 1px;">  </button>	
+										<button id="btn-color-red" onclick="colorRed()" style="background-color: red;border:none;margin-left: 1px;">  </button>
+										<button id="btn-font1" onclick="getFontStyle1()" style="font-family:Arial Black">A</button>
+										<button id="btn-font2" onclick="getFontStyle2()" style="font-family:Comic Sans MS">A</button>
+										<button id="btn-size" onclick="textSize()">S</button>
+									</div>
+								
+							</div>
+							<div class="col-md-4  menu-box">
+								
+									<div>
+										<small>Control Box</small>
+									</div>
+									<div>
+										<input type="radio" name="check" checked value="I" id="i-flow"> Instant
+										<input type="radio" name="check" value="E"  id="m-flow"> Event
+										<button id="btn-apply" onclick="getAllAction()"><b>Apply</b></button>
+										
+									</div>
+							</div>
+							
+							
+						</div>
+					</div>					
+				</div>
+
+				<div class="row content-container"> <!-- content container--->
+					<div class="col-md-12 ">
+						<div class="form-group">
+						    <br>
+						    <textarea class="form-control" id="text-box" rows="18" autofocus="true" placeholder="type anything here this is simple editor using js "></textarea>
+						  </div>
+					</div>
+				</div>
+
+				<div class="row status-container"> <!-- status bar--->
+					<div class="col-md-12">
+						
+					</div>
+				</div>
+
+				<div class="row footer-container"> <!-- footer bar--->
+					<div class="col-md-12 ">
+						<small>@copyright by jsword</small>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		
+	
+	</div>
+</div>
+</div>
+</body>
+</html>
